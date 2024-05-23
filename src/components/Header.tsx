@@ -1,6 +1,6 @@
 import {NavLink} from 'react-router-dom'
 import styled from '@emotion/styled'
-import {Box, BoxProps} from '@mui/material'
+import {CardMedia} from '@mui/material'
 import OverlayLogoOnlyDark from '../assets/images/overlay-logo-only-no-background.png'
 
 const HeaderContainer = styled.div`
@@ -22,18 +22,11 @@ const LogoContainer = styled.div`
   margin: auto 16px auto 0px;
 `
 
-type ImgProps = {
-  alt: string
-  src: string
-}
-
-const Image = (props: BoxProps & ImgProps) => <Box component="img" {...props} />
-
 export default function Header() {
   return (
     <HeaderContainer>
       <LogoContainer>
-        <Image src={OverlayLogoOnlyDark} alt={'Overlay Logo Light'} height={'100%'} width={'100%'} minHeight={'30px'} minWidth={'30px'} />
+        <CardMedia component="img" alt="Overlay Logo Light" height={'100%'} width={'100%'} image={OverlayLogoOnlyDark} />
       </LogoContainer>
     </HeaderContainer>
   )
