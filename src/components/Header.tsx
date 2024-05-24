@@ -15,7 +15,7 @@ const HeaderContainer = styled.div`
   max-width: 1440px;
   box-sizing: border-box;
   margin: auto;
-  padding: 24px 8px 24px;
+  padding: 24px;
   position: sticky;
 `
 

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import {Typography} from '@mui/material'
 import {NavLink, useLocation} from 'react-router-dom'
+import {useWindowDimensions} from '../hooks/useWindowDimensions'
 
 const StyledMenu = styled.nav<{open: boolean; height: number; width: number}>`
   display: flex;
@@ -60,11 +61,11 @@ const StyledMenuLink = ({displayText, linkDestination, currentLocation}: StyledM
 const SlideMenu = ({open, setOpen, ...props}: {open: boolean; setOpen: Function; props?: any}) => {
   const isHidden = open ? true : false
   const tabIndex = isHidden ? 0 : -1
-
+  const {height, width} = useWindowDimensions()
   let location = useLocation().pathname
 
   return (
-    <StyledMenu onClick={() => setOpen(!open)} open={open} aria-hidden={!isHidden} height={150} width={100} {...props}>
+    <StyledMenu onClick={() => setOpen(!open)} open={open} aria-hidden={!isHidden} height={height} width={width} {...props}>
       {
         <Content onClick={e => e.stopPropagation()}>
           <>
