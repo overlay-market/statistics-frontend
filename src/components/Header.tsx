@@ -1,7 +1,7 @@
-import {NavLink} from 'react-router-dom'
 import styled from '@emotion/styled'
 import {CardMedia} from '@mui/material'
 import OverlayLogoOnlyDark from '../assets/images/overlay-logo-only-no-background.png'
+import {NavLink} from 'react-router-dom'
 
 const HeaderContainer = styled.div`
   color: '#FFFFFF';
@@ -22,12 +22,25 @@ const LogoContainer = styled.div`
   margin: auto 16px auto 0px;
 `
 
+const StyledLink = styled(NavLink)({
+  color: '#ffffff',
+  fontSize: '14px',
+  fontWeight: '700',
+  textDecoration: 'none',
+  margin: 'auto 16px',
+  '&.active': {
+    color: '#71CEFF',
+  },
+})
+
 export default function Header() {
   return (
     <HeaderContainer>
       <LogoContainer>
         <CardMedia component="img" alt="Overlay Logo Light" height={'100%'} width={'100%'} image={OverlayLogoOnlyDark} />
       </LogoContainer>
+      <StyledLink to={'/'}>Daily Token Data</StyledLink>
+      <StyledLink to={'/markets-ois-funding-rate'}>Market's OIs and Funding Rate</StyledLink>
     </HeaderContainer>
   )
 }
