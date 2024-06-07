@@ -44,7 +44,7 @@ function DailyTokenData() {
         height={cardMediaHeight}
         mobileWidth={width}
         mobileHeight={mobileHeight}
-        src="http://13.48.203.178:8080/public-dashboards/2839d73ea7eb4cb98834a7df2fae54e2"
+        src="https://grafana.overlay.market/public-dashboards/2839d73ea7eb4cb98834a7df2fae54e2"
       />
     </>
   )

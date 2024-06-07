@@ -44,7 +44,7 @@ function MarketsOisFundingRate() {
         height={cardMediaHeight}
         mobileWidth={width}
         mobileHeight={mobileHeight}
-        src="http://13.48.203.178:8080/public-dashboards/7e1bd3277cb84af8933342a513f2e036"
+        src="https://grafana.overlay.market/public-dashboards/7e1bd3277cb84af8933342a513f2e036"
       />
     </>
   )
