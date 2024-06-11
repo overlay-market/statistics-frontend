@@ -3,7 +3,7 @@ import {Route, Routes} from 'react-router-dom'
 import Header from './components/Header'
 import styled from '@emotion/styled'
 import MarketsOisFundingRate from './pages/MarketsOisFundingRate'
-import DailyTokenData from './pages/DailyTokenData'
+import DailyProtocolData from './pages/DailyProtocolData'
 
 export const AppWrapper = styled.div`
   height: 100%;
@@ -18,7 +18,7 @@ function App() {
     <AppWrapper>
       <Header />
       <Routes>
-        <Route path="/" element={<DailyTokenData />} />
+        <Route path="/" element={<DailyProtocolData />} />
         <Route path="/markets-ois-funding-rate" element={<MarketsOisFundingRate />} />
       </Routes>
     </AppWrapper>

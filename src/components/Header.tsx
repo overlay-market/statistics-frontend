@@ -55,7 +55,7 @@ export default function Header() {
       <LogoContainer>
         <CardMedia component="img" alt="Overlay Logo Light" height={'100%'} width={'100%'} image={OverlayLogoOnlyDark} />
       </LogoContainer>
-      <StyledLink to={'/'}>Daily Token Data</StyledLink>
+      <StyledLink to={'/'}>Daily Protocol Data</StyledLink>
       <StyledLink to={'/markets-ois-funding-rate'}>Market's OIs and Funding Rate</StyledLink>
       <MobileMenu open={open} setOpen={setOpen} />
       <SlideMenu open={open} setOpen={setOpen} />

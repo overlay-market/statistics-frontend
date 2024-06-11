@@ -30,7 +30,7 @@ const Dashboard = styled(CardMedia)<DashboardProps>(
   }),
 )
 
-function DailyTokenData() {
+function DailyProtocolData() {
   const {height, width} = useWindowDimensions()
 
   const cardMediaHeight = height - 110
@@ -50,4 +50,4 @@ function DailyTokenData() {
   )
 }
 
-export default DailyTokenData
+export default DailyProtocolData
