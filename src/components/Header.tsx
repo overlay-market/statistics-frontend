@@ -6,6 +6,7 @@ import {theme} from '../theme/theme'
 import {useEffect, useState} from 'react'
 import SlideMenu from './SlideMenu'
 import MobileMenu from './MobileMenu'
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded'
 
 const HeaderContainer = styled.div`
   color: '#FFFFFF';
@@ -44,30 +45,32 @@ const SelectedLink = styled(Box)({
   fontSize: '14px',
   fontWeight: '700',
   textDecoration: 'none',
-  margin: 'auto 16px',
+  margin: 'auto 4px auto 16px',
+})
+
+const DropdownMenuContainer = styled(Box)({
+  margin: '20px 16px',
+  width: '190px',
   display: 'flex',
+  cursor: 'pointer',
   [theme.breakpoints.down('md')]: {
     display: 'none',
   },
 })
 
-const DropdownMenuContainer = styled(Box)({
-  margin: '20px 16px',
-  width: '180px',
-  cursor: 'pointer',
-})
-
 const StyledMenu = styled(Menu)({
-  width: '176px',
   marginTop: '10px',
-
   borderRadius: '4px',
   '& .MuiPaper-root': {
     backgroundColor: '#202431',
-    maxWidth: '180px',
+    borderTop: '1px solid #333',
+    maxWidth: '190px',
   },
   '& .MuiButtonBase-root': {
     paddingLeft: '0',
+  },
+  '& .MuiButtonBase-root:hover': {
+    backgroundColor: 'rgb(0,0,0, 0.16)',
   },
 })
 
@@ -128,10 +131,10 @@ export default function Header() {
         aria-controls={openDropdownMenu ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={openDropdownMenu ? 'true' : undefined}
+        sx={{color: location === activeLink.link ? '#71CEFF' : '#fff'}}
       >
-        <SelectedLink sx={{color: location === activeLink.link ? '#71CEFF' : '#fff'}}>
-          {location === activeLink.link ? activeLink.title : 'Daily / Hourly'}{' '}
-        </SelectedLink>
+        <SelectedLink>{location === activeLink.link ? activeLink.title : 'Daily / Hourly Data'} </SelectedLink>
+        <ExpandMoreRoundedIcon />
       </DropdownMenuContainer>
       <StyledMenu id="basic-menu" anchorEl={anchorEl} open={openDropdownMenu} onClose={handleClose}>
         <MenuItem onClick={() => handleLink(DROPDOWN_LINKS.daily)}>
