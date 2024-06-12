@@ -70,7 +70,10 @@ const SlideMenu = ({open, setOpen, ...props}: {open: boolean; setOpen: Function;
         <Content onClick={e => e.stopPropagation()}>
           <>
             <StyledLink tabIndex={tabIndex} to={'/'}>
-              <StyledMenuLink displayText={'Daily Token Data'} linkDestination={'/'} currentLocation={location} />
+              <StyledMenuLink displayText={'Daily Protocol Data'} linkDestination={'/'} currentLocation={location} />
+            </StyledLink>
+            <StyledLink tabIndex={tabIndex} to={'/hourly-protocol-data'}>
+              <StyledMenuLink displayText={'Hourly Protocol Data'} linkDestination={'/hourly-protocol-data'} currentLocation={location} />
             </StyledLink>
             <StyledLink tabIndex={tabIndex} to={'/markets-ois-funding-rate'}>
               <StyledMenuLink

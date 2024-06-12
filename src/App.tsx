@@ -4,6 +4,7 @@ import Header from './components/Header'
 import styled from '@emotion/styled'
 import MarketsOisFundingRate from './pages/MarketsOisFundingRate'
 import DailyProtocolData from './pages/DailyProtocolData'
+import HourlyProtocolData from './pages/HourlyProtocolData'
 
 export const AppWrapper = styled.div`
   height: 100%;
@@ -19,6 +20,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<DailyProtocolData />} />
+        <Route path="/hourly-protocol-data" element={<HourlyProtocolData />} />
         <Route path="/markets-ois-funding-rate" element={<MarketsOisFundingRate />} />
       </Routes>
     </AppWrapper>
