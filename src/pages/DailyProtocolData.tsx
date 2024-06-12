@@ -7,8 +7,8 @@ type DashboardProps = {
   component: string
   width: number
   height: number
-  mobileWidth: number
-  mobileHeight: number
+  mobilewidth: number
+  mobileheight: number
 }
 
 const Dashboard = styled(CardMedia)<DashboardProps>(
@@ -24,8 +24,8 @@ const Dashboard = styled(CardMedia)<DashboardProps>(
     width: props.width,
     height: props.height,
     [theme.breakpoints.down('sm')]: {
-      width: props.mobileWidth,
-      height: props.mobileHeight,
+      width: props.mobilewidth,
+      height: props.mobileheight,
     },
   }),
 )
@@ -42,8 +42,8 @@ function DailyProtocolData() {
         component={'iframe'}
         width={cardMediaWidth}
         height={cardMediaHeight}
-        mobileWidth={width}
-        mobileHeight={mobileHeight}
+        mobilewidth={width}
+        mobileheight={mobileHeight}
         src="https://grafana.overlay.market/public-dashboards/2839d73ea7eb4cb98834a7df2fae54e2"
       />
     </>
