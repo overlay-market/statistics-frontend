@@ -145,6 +145,7 @@ export default function Header() {
         </MenuItem>
       </StyledMenu>
 
+      <StyledLink to={'/protocol-globals'}>Protocol Globals</StyledLink>
       <StyledLink to={'/markets-ois-funding-rate'}>Market's OIs and Funding Rate</StyledLink>
       <MobileMenu open={openMobileMenu} setOpen={setOpenMobileMenu} />
       <SlideMenu open={openMobileMenu} setOpen={setOpenMobileMenu} />

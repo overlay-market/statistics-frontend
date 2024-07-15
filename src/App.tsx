@@ -3,6 +3,7 @@ import {Route, Routes} from 'react-router-dom'
 import Header from './components/Header'
 import styled from '@emotion/styled'
 import MarketsOisFundingRate from './pages/MarketsOisFundingRate'
+import ProtocolGlobals from './pages/ProtocolGlobals'
 import DailyProtocolData from './pages/DailyProtocolData'
 import HourlyProtocolData from './pages/HourlyProtocolData'
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<DailyProtocolData />} />
         <Route path="/hourly-protocol-data" element={<HourlyProtocolData />} />
         <Route path="/markets-ois-funding-rate" element={<MarketsOisFundingRate />} />
+        <Route path="/protocol-globals" element={<ProtocolGlobals />} />
       </Routes>
     </AppWrapper>
   )
