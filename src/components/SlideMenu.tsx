@@ -75,6 +75,9 @@ const SlideMenu = ({open, setOpen, ...props}: {open: boolean; setOpen: Function;
             <StyledLink tabIndex={tabIndex} to={'/hourly-protocol-data'}>
               <StyledMenuLink displayText={'Hourly Protocol Data'} linkDestination={'/hourly-protocol-data'} currentLocation={location} />
             </StyledLink>
+            <StyledLink tabIndex={tabIndex} to={'/protocol-globals'}>
+              <StyledMenuLink displayText={'Protocol Globals'} linkDestination={'/protocol-globals'} currentLocation={location} />
+            </StyledLink>
             <StyledLink tabIndex={tabIndex} to={'/markets-ois-funding-rate'}>
               <StyledMenuLink
                 displayText={"Market's OIs and Funding Rate"}
