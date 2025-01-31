@@ -25,7 +25,7 @@ export const SRC_MARKETS_OI_FUNDING_RATE: {
   [chainId in SUPPORTED_CHAINID | number]: string;
 } = {
   [SUPPORTED_CHAINID.ARBITRUM_SEPOLIA]: "https://grafana.overlay.market/public-dashboards/7e1bd3277cb84af8933342a513f2e036",
-  [SUPPORTED_CHAINID.BARTIO]: "https://overlay.market",
+  [SUPPORTED_CHAINID.BARTIO]: "https://grafana.overlay.market/public-dashboards/f3238bdb97b643eca29abc03d3ec06cd",
 }
 
 
