@@ -1,9 +1,7 @@
 import {useEffect, useState} from 'react'
-import {CHAIN_LIST, CHAIN_LIST_ORDER, DEFAULT_CHAINID, NETWORK_ICONS} from '../constants/chains'
+import {CHAIN_ID_LOCAL_STORAGE_KEY, CHAIN_LIST, CHAIN_LIST_ORDER, DEFAULT_CHAINID, NETWORK_ICONS} from '../constants/chains'
 import {ChainItem, ChainLogo, DropdownMenuContainer, StyledMenu} from './chain-switch-styles'
 import {MenuItem} from '@mui/material'
-
-export const CHAIN_ID_LOCAL_STORAGE_KEY = 'selectedChainId'
 
 const ChainSwitch = () => {
   const storedChainId = localStorage.getItem(CHAIN_ID_LOCAL_STORAGE_KEY)
@@ -27,9 +25,14 @@ const ChainSwitch = () => {
     setAnchorEl(null)
   }
 
+  const updateStoredChainId = (newChainId: number) => {
+    localStorage.setItem(CHAIN_ID_LOCAL_STORAGE_KEY, newChainId.toString())
+    window.dispatchEvent(new Event('storageChange'))
+  }
+
   const handleChainSelect = (targetChainId: number) => {
     setChainId(targetChainId)
-    localStorage.setItem(CHAIN_ID_LOCAL_STORAGE_KEY, targetChainId.toString())
+    updateStoredChainId(targetChainId)
     setAnchorEl(null)
   }
 

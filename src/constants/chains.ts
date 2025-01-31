@@ -1,12 +1,13 @@
 import ArbitrumSepoliaLogo from "../assets/images/arbitrum-testnet-logo.png";
 import BartioLogo from "../assets/images/bartio-logo.png";
 
+export const CHAIN_ID_LOCAL_STORAGE_KEY = 'selectedChainId'
+
 export enum SUPPORTED_CHAINID {
   ARBITRUM_SEPOLIA = 421614,
   BARTIO = 80084,
 }
 
-export const DEFAULT_NET = SUPPORTED_CHAINID[80084];
 export const DEFAULT_CHAINID: number = SUPPORTED_CHAINID.BARTIO;
 
 export const NETWORK_ICONS: {

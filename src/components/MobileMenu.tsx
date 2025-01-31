@@ -16,8 +16,6 @@ const StyledMenuLink = ({displayText, linkDestination, currentLocation}: StyledM
   return <Typography sx={{color: color}}>{displayText}</Typography>
 }
 
-export const CHAIN_ID_LOCAL_STORAGE_KEY = 'selectedChainId'
-
 const MobileMenu = ({open, setOpen}: {open: boolean; setOpen: Function}) => {
   let location = useLocation().pathname
 

@@ -27,7 +27,7 @@ const DROPDOWN_LINKS = {
   },
 }
 
-export default function Header() {
+const Header = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
   let location = useLocation().pathname
 
@@ -101,3 +101,5 @@ export default function Header() {
     </HeaderContainer>
   )
 }
+
+export default Header
