@@ -2,6 +2,10 @@ import {CardMedia} from '@mui/material'
 import {useWindowDimensions} from '../hooks/useWindowDimensions'
 import {theme} from '../theme/theme'
 import styled from '@emotion/styled'
+import {CHAIN_ID_LOCAL_STORAGE_KEY, DEFAULT_CHAINID} from '../constants/chains'
+import {SRC_PROTOCOL_GLOBALS} from '../constants/grafanaLinks'
+import {useEffect, useState} from 'react'
+import {useStoredChainId} from '../hooks/useStoredChainId'
 
 type DashboardProps = {
   component: string
@@ -30,24 +34,22 @@ const Dashboard = styled(CardMedia)<DashboardProps>(
   }),
 )
 
-function ProtocolGlobals() {
+const ProtocolGlobals = () => {
+  const storedChainId = useStoredChainId(CHAIN_ID_LOCAL_STORAGE_KEY)
+  const dashboardSrc = storedChainId !== null ? SRC_PROTOCOL_GLOBALS[Number(storedChainId)] : SRC_PROTOCOL_GLOBALS[DEFAULT_CHAINID]
+
+  const [url, setUrl] = useState(dashboardSrc)
   const {height, width} = useWindowDimensions()
 
-  const cardMediaHeight = height - 110
+  const cardMediaHeight = height - 90
   const cardMediaWidth = width - 48
   const mobileHeight = height - 85
-  return (
-    <>
-      <Dashboard
-        component={'iframe'}
-        width={cardMediaWidth}
-        height={cardMediaHeight}
-        mobilewidth={width}
-        mobileheight={mobileHeight}
-        src="https://grafana.overlay.market/public-dashboards/c97517b6ebd64e6b830a0c8d90fe10c3"
-      />
-    </>
-  )
+
+  useEffect(() => {
+    setUrl(SRC_PROTOCOL_GLOBALS[Number(storedChainId)])
+  }, [storedChainId])
+
+  return <Dashboard component={'iframe'} width={cardMediaWidth} height={cardMediaHeight} mobilewidth={width} mobileheight={mobileHeight} src={url} />
 }
 
 export default ProtocolGlobals
