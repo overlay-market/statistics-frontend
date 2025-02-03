@@ -1,63 +1,105 @@
-import {useState, useEffect} from 'react'
-import styled from '@emotion/styled'
+import {useEffect, useState} from 'react'
+import {MenuItem, Typography} from '@mui/material'
 import HeaderHamburger from './HeaderHamburger'
-import {theme} from '../theme/theme'
+import {useLocation} from 'react-router-dom'
+import {DropdownMenuContainer, MenuButton, StyledLink, StyledMenu} from './mobile-menu-styles'
 
-const RelativeContainer = styled(`div`)({
-  position: 'relative',
-  display: 'block',
-  width: 'auto',
-  marginLeft: 'auto',
+interface StyledMenuLinkProps {
+  displayText: string
+  linkDestination: string
+  currentLocation: string
+}
 
-  [theme.breakpoints.up('md')]: {
-    display: 'none',
-  },
-})
+const StyledMenuLink = ({displayText, linkDestination, currentLocation}: StyledMenuLinkProps) => {
+  const active = currentLocation === linkDestination
+  const color = active ? '#12B4FF' : '#FFF'
+  return <Typography sx={{color: color}}>{displayText}</Typography>
+}
 
-const MenuButton = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-radius: 8px;
-  gap: 8px;
-  background: #2e3343;
-  position: relative;
-  outline: none;
-  border: 0;
-  cursor: pointer;
-`
+const MobileMenu = ({open, setOpen}: {open: boolean; setOpen: Function}) => {
+  let location = useLocation().pathname
 
-export default function MobileMenu({open, setOpen}: {open: boolean; setOpen: Function}) {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
-
-  const showMenu = (val: boolean) => {
-    setIsMenuOpen(val)
-  }
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const openDropdownMenu = Boolean(anchorEl)
 
   useEffect(() => {
-    setIsMenuOpen(open)
+    if (!open) {
+      setAnchorEl(null)
+    }
   }, [open])
 
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+    setOpen(false)
+  }
+
   return (
-    <RelativeContainer>
-      <div onClick={() => showMenu(true)}>
+    <>
+      <DropdownMenuContainer
+        onClick={handleClick}
+        id="dropdown"
+        aria-controls={openDropdownMenu ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={openDropdownMenu ? 'true' : undefined}
+      >
         <MenuButton
           id="showButton"
-          onClick={event => {
-            event.stopPropagation()
+          onClick={() => {
             setOpen(!open)
           }}
         >
           <HeaderHamburger
-            open={isMenuOpen}
-            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-              event.stopPropagation()
-              setIsMenuOpen(!isMenuOpen)
+            open={open}
+            onClick={() => {
               setOpen(!open)
             }}
           />
         </MenuButton>
-      </div>
-    </RelativeContainer>
+      </DropdownMenuContainer>
+      <StyledMenu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={openDropdownMenu}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem>
+          <StyledLink to={'/'}>
+            <StyledMenuLink displayText={'Daily Protocol Data'} linkDestination={'/'} currentLocation={location} />
+          </StyledLink>
+        </MenuItem>
+
+        <MenuItem>
+          <StyledLink to={'/hourly-protocol-data'}>
+            <StyledMenuLink displayText={'Hourly Protocol Data'} linkDestination={'/hourly-protocol-data'} currentLocation={location} />
+          </StyledLink>
+        </MenuItem>
+
+        <MenuItem>
+          <StyledLink to={'/protocol-globals'}>
+            <StyledMenuLink displayText={'Protocol Globals'} linkDestination={'/protocol-globals'} currentLocation={location} />
+          </StyledLink>
+        </MenuItem>
+
+        <MenuItem>
+          <StyledLink to={'/markets-ois-funding-rate'}>
+            <StyledMenuLink displayText={"Market's OIs and Funding Rate"} linkDestination={'/markets-ois-funding-rate'} currentLocation={location} />
+          </StyledLink>
+        </MenuItem>
+      </StyledMenu>
+    </>
   )
 }
+
+export default MobileMenu

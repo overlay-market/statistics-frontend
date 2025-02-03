@@ -1,78 +1,20 @@
-import styled from '@emotion/styled'
-import {Box, CardMedia, Menu, MenuItem} from '@mui/material'
+import {CardMedia, MenuItem} from '@mui/material'
 import OverlayLogoOnlyDark from '../assets/images/overlay-logo-only-no-background.png'
-import {NavLink, useLocation} from 'react-router-dom'
-import {theme} from '../theme/theme'
+import {useLocation} from 'react-router-dom'
 import {useEffect, useState} from 'react'
-import SlideMenu from './SlideMenu'
-import MobileMenu from './MobileMenu'
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded'
-
-const HeaderContainer = styled.div`
-  color: '#FFFFFF';
-  display: flex;
-  flex-direction: row;
-  width: auto;
-  max-width: 1440px;
-  box-sizing: border-box;
-  margin: auto;
-  padding: 24px;
-  position: sticky;
-`
-
-const LogoContainer = styled.div`
-  height: 30px;
-  width: 30px;
-  margin: auto 16px auto 0px;
-`
-
-const StyledLink = styled(NavLink)({
-  color: '#ffffff',
-  fontSize: '14px',
-  fontWeight: '700',
-  textDecoration: 'none',
-  margin: 'auto 16px',
-  display: 'flex',
-  '&.active': {
-    color: '#71CEFF',
-  },
-  [theme.breakpoints.down('md')]: {
-    display: 'none',
-  },
-})
-
-const SelectedLink = styled(Box)({
-  fontSize: '14px',
-  fontWeight: '700',
-  textDecoration: 'none',
-  margin: 'auto 4px auto 16px',
-})
-
-const DropdownMenuContainer = styled(Box)({
-  margin: '20px 16px',
-  width: '190px',
-  display: 'flex',
-  cursor: 'pointer',
-  [theme.breakpoints.down('md')]: {
-    display: 'none',
-  },
-})
-
-const StyledMenu = styled(Menu)({
-  marginTop: '10px',
-  borderRadius: '4px',
-  '& .MuiPaper-root': {
-    backgroundColor: '#202431',
-    borderTop: '1px solid #333',
-    maxWidth: '190px',
-  },
-  '& .MuiButtonBase-root': {
-    paddingLeft: '0',
-  },
-  '& .MuiButtonBase-root:hover': {
-    backgroundColor: 'rgb(0,0,0, 0.16)',
-  },
-})
+import {
+  DropdownMenuContainer,
+  FlexContainer,
+  HeaderContainer,
+  LogoContainer,
+  MobileMenuContainer,
+  SelectedLink,
+  StyledLink,
+  StyledMenu,
+} from './header-styles'
+import ChainSwitch from './ChainSwitch'
+import MobileMenu from './MobileMenu'
 
 const DROPDOWN_LINKS = {
   daily: {
@@ -85,7 +27,7 @@ const DROPDOWN_LINKS = {
   },
 }
 
-export default function Header() {
+const Header = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
   let location = useLocation().pathname
 
@@ -125,6 +67,7 @@ export default function Header() {
       <LogoContainer>
         <CardMedia component="img" alt="Overlay Logo Light" height={'100%'} width={'100%'} image={OverlayLogoOnlyDark} />
       </LogoContainer>
+
       <DropdownMenuContainer
         onClick={handleClick}
         id="dropdown"
@@ -136,6 +79,7 @@ export default function Header() {
         <SelectedLink>{location === activeLink.link ? activeLink.title : 'Daily / Hourly Data'} </SelectedLink>
         <ExpandMoreRoundedIcon />
       </DropdownMenuContainer>
+
       <StyledMenu id="basic-menu" anchorEl={anchorEl} open={openDropdownMenu} onClose={handleClose}>
         <MenuItem onClick={() => handleLink(DROPDOWN_LINKS.daily)}>
           <StyledLink to={DROPDOWN_LINKS.daily.link}>{DROPDOWN_LINKS.daily.title}</StyledLink>
@@ -147,8 +91,15 @@ export default function Header() {
 
       <StyledLink to={'/protocol-globals'}>Protocol Globals</StyledLink>
       <StyledLink to={'/markets-ois-funding-rate'}>Market's OIs and Funding Rate</StyledLink>
-      <MobileMenu open={openMobileMenu} setOpen={setOpenMobileMenu} />
-      <SlideMenu open={openMobileMenu} setOpen={setOpenMobileMenu} />
+
+      <FlexContainer>
+        <ChainSwitch />
+        <MobileMenuContainer>
+          <MobileMenu open={openMobileMenu} setOpen={setOpenMobileMenu} />
+        </MobileMenuContainer>
+      </FlexContainer>
     </HeaderContainer>
   )
 }
+
+export default Header

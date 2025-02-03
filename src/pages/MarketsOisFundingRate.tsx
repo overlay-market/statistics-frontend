@@ -2,6 +2,10 @@ import {CardMedia} from '@mui/material'
 import {useWindowDimensions} from '../hooks/useWindowDimensions'
 import {theme} from '../theme/theme'
 import styled from '@emotion/styled'
+import {useStoredChainId} from '../hooks/useStoredChainId'
+import {useEffect, useState} from 'react'
+import {CHAIN_ID_LOCAL_STORAGE_KEY, DEFAULT_CHAINID} from '../constants/chains'
+import {SRC_MARKETS_OI_FUNDING_RATE} from '../constants/grafanaLinks'
 
 type DashboardProps = {
   component: string
@@ -30,24 +34,22 @@ const Dashboard = styled(CardMedia)<DashboardProps>(
   }),
 )
 
-function MarketsOisFundingRate() {
+const MarketsOisFundingRate = () => {
+  const storedChainId = useStoredChainId(CHAIN_ID_LOCAL_STORAGE_KEY)
+  const dashboardSrc = storedChainId !== null ? SRC_MARKETS_OI_FUNDING_RATE[Number(storedChainId)] : SRC_MARKETS_OI_FUNDING_RATE[DEFAULT_CHAINID]
+
+  const [url, setUrl] = useState(dashboardSrc)
   const {height, width} = useWindowDimensions()
 
-  const cardMediaHeight = height - 110
+  const cardMediaHeight = height - 90
   const cardMediaWidth = width - 48
   const mobileHeight = height - 85
-  return (
-    <>
-      <Dashboard
-        component={'iframe'}
-        width={cardMediaWidth}
-        height={cardMediaHeight}
-        mobilewidth={width}
-        mobileheight={mobileHeight}
-        src="https://grafana.overlay.market/public-dashboards/7e1bd3277cb84af8933342a513f2e036"
-      />
-    </>
-  )
+
+  useEffect(() => {
+    setUrl(SRC_MARKETS_OI_FUNDING_RATE[Number(storedChainId)])
+  }, [storedChainId])
+
+  return <Dashboard component={'iframe'} width={cardMediaWidth} height={cardMediaHeight} mobilewidth={width} mobileheight={mobileHeight} src={url} />
 }
 
 export default MarketsOisFundingRate
