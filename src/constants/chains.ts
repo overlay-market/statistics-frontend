@@ -8,9 +8,10 @@ export enum SUPPORTED_CHAINID {
   ARBITRUM_SEPOLIA = 421614,
   BARTIO = 80084,
   BSC_TESTNET = 97,
+  BSC = 56,
 }
 
-export const DEFAULT_CHAINID: number = SUPPORTED_CHAINID.BSC_TESTNET;
+export const DEFAULT_CHAINID: number = SUPPORTED_CHAINID.BSC;
 
 export const NETWORK_ICONS: {
   [chainId in SUPPORTED_CHAINID | number]: string;
@@ -18,16 +19,19 @@ export const NETWORK_ICONS: {
   [SUPPORTED_CHAINID.ARBITRUM_SEPOLIA]: ArbitrumSepoliaLogo,
   [SUPPORTED_CHAINID.BARTIO]: BartioLogo,
   [SUPPORTED_CHAINID.BSC_TESTNET]: BscTestnetLogo,
+  [SUPPORTED_CHAINID.BSC]: BscTestnetLogo,
 };
 
 export const CHAIN_LIST: { [chainId in SUPPORTED_CHAINID | number]: string } = {
   // [SUPPORTED_CHAINID.ARBITRUM_SEPOLIA]: "Arbitrum Sepolia",
   // [SUPPORTED_CHAINID.BARTIO]: "Berachain bArtio",
-  [SUPPORTED_CHAINID.BSC_TESTNET]: 'Binance Smart Chain Testnet',
+  // [SUPPORTED_CHAINID.BSC_TESTNET]: 'Binance Smart Chain Testnet',
+  [SUPPORTED_CHAINID.BSC]: 'Binance Smart Chain',
 };
 
 export const CHAIN_LIST_ORDER: { [x: number]: number } = {
   // [0]: SUPPORTED_CHAINID.BARTIO,
   // [1]: SUPPORTED_CHAINID.ARBITRUM_SEPOLIA,
-  [2]: SUPPORTED_CHAINID.BSC_TESTNET,
+  // [2]: SUPPORTED_CHAINID.BSC_TESTNET,
+  [0]: SUPPORTED_CHAINID.BSC,
 };
