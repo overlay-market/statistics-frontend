@@ -4,8 +4,8 @@ import {ChainItem, ChainLogo, DropdownMenuContainer, StyledMenu} from './chain-s
 import {MenuItem} from '@mui/material'
 
 const ChainSwitch = () => {
-  const storedChainId = localStorage.getItem(CHAIN_ID_LOCAL_STORAGE_KEY)
-
+  // const storedChainId = localStorage.getItem(CHAIN_ID_LOCAL_STORAGE_KEY)
+  const storedChainId = DEFAULT_CHAINID
   const [chainId, setChainId] = useState(storedChainId ?? DEFAULT_CHAINID)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
