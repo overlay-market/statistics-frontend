@@ -1,6 +1,7 @@
 import { DEFAULT_CHAINID } from "../constants/chains"
 
 export const useStoredChainId = (key: string) => {
+  void key
   // const [chainId, setChainId] = useState(localStorage.getItem(key))
 
   // useEffect(() => {
