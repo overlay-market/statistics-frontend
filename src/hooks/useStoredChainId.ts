@@ -1,27 +1,28 @@
-import { useEffect, useState } from "react"
+import { DEFAULT_CHAINID } from "../constants/chains"
 
 export const useStoredChainId = (key: string) => {
-  const [chainId, setChainId] = useState(localStorage.getItem(key))
+  void key
+  // const [chainId, setChainId] = useState(localStorage.getItem(key))
 
-  useEffect(() => {
-    const handleStorageChange = (event: StorageEvent) => {
-      if (event.key === key) {
-        setChainId(event.newValue)
-      }
-    }
+  // useEffect(() => {
+  //   const handleStorageChange = (event: StorageEvent) => {
+  //     if (event.key === key) {
+  //       setChainId(event.newValue)
+  //     }
+  //   }
 
-    const handleCustomEvent = () => {
-      setChainId(localStorage.getItem(key))
-    }
+  //   const handleCustomEvent = () => {
+  //     setChainId(localStorage.getItem(key))
+  //   }
 
-    window.addEventListener('storage', handleStorageChange)
-    window.addEventListener('storageChange', handleCustomEvent)
+  //   window.addEventListener('storage', handleStorageChange)
+  //   window.addEventListener('storageChange', handleCustomEvent)
 
-    return () => {
-      window.removeEventListener('storage', handleStorageChange)
-      window.removeEventListener('storageChange', handleCustomEvent)
-    }
-  }, [key])
+  //   return () => {
+  //     window.removeEventListener('storage', handleStorageChange)
+  //     window.removeEventListener('storageChange', handleCustomEvent)
+  //   }
+  // }, [key])
 
-  return chainId
+  return DEFAULT_CHAINID
 }
